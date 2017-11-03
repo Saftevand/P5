@@ -1,12 +1,15 @@
 package SW504;
+import org.datavec.api.io.filters.BalancedPathFilter;
 import org.datavec.api.io.labels.ParentPathLabelGenerator;
 import org.datavec.api.records.listener.impl.LogRecordListener;
 import org.datavec.api.split.FileSplit;
+import org.datavec.api.split.InputSplit;
 import org.datavec.image.loader.NativeImageLoader;
 import org.datavec.image.recordreader.ImageRecordReader;
 import org.datavec.image.transform.FlipImageTransform;
 import org.datavec.image.transform.ImageTransform;
 import org.datavec.image.transform.WarpImageTransform;
+import org.deeplearning4j.api.storage.StatsStorage;
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator;
 import org.deeplearning4j.datasets.iterator.MultipleEpochsIterator;
 import org.deeplearning4j.eval.Evaluation;
@@ -19,6 +22,9 @@ import org.deeplearning4j.nn.conf.inputs.InputType;
 import org.deeplearning4j.nn.conf.layers.*;
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork;
 import org.deeplearning4j.nn.weights.WeightInit;
+import org.deeplearning4j.ui.api.UIServer;
+import org.deeplearning4j.ui.stats.StatsListener;
+import org.deeplearning4j.ui.storage.InMemoryStatsStorage;
 import org.deeplearning4j.util.ModelSerializer;
 import org.nd4j.linalg.activations.Activation;
 import org.nd4j.linalg.api.ndarray.INDArray;
@@ -42,43 +48,63 @@ public class Program {
     protected static int height = 100;
     protected static int width = 100;
     protected static int channels = 3;
-    protected static int numExamples = 80;
-    protected static int numLabels = 2;
-    protected static int batchSize = 20;
-
+    protected static int numLabels = 5;
+    protected static int batchSize = 100;
     protected static long seed = 42;
     protected static Random rng = new Random(seed);
-    protected static int listenerFreq = 1;
     protected static int iterations = 1;
     protected static int epochs = 15;
     protected static double splitTrainTest = 0.8;
-    protected static boolean save = false;
+    protected static File imagePath  =  new File("C:/Users/palmi/Desktop/NeuralNetworkImages");
+    protected static boolean trainWithTransform = false;
+    protected static MultiLayerNetwork trainedNetwork = lenetModel();
     private static Logger log = LoggerFactory.getLogger(Program.class);
 
     public static void main(String[] args) throws IOException {
-        File trainPath = new File("C:/Users/palmi/Desktop/NeuralNetwork/TrainSet");
-        File testPath = new File("C:/Users/palmi/Desktop/NeuralNetwork/TestSet");
+        // For individually setting the training and test paths
 
-        FileSplit train = new FileSplit(trainPath, NativeImageLoader.ALLOWED_FORMATS,rng);
-        FileSplit test = new FileSplit(testPath,NativeImageLoader.ALLOWED_FORMATS,rng);
+        File trainPath = new File("C:/Users/palmi/Desktop/NeuralTesting/TrainSet");
+        File testPath = new File("C:/Users/palmi/Desktop/NeuralTesting/TestSet");
+
+        FileSplit trainData = new FileSplit(trainPath, NativeImageLoader.ALLOWED_FORMATS,rng);
+        FileSplit testData = new FileSplit(testPath,NativeImageLoader.ALLOWED_FORMATS,rng);
 
         ParentPathLabelGenerator labelGenerator = new ParentPathLabelGenerator();
+
+        /*
+
+        FileSplit fileSplit = new FileSplit(imagePath, NativeImageLoader.ALLOWED_FORMATS,rng);
+        BalancedPathFilter pathFilter = new BalancedPathFilter(rng, labelGenerator, 250, numLabels, batchSize);
+        InputSplit[] inputSplit = fileSplit.sample(pathFilter, splitTrainTest, 1 - splitTrainTest);
+        InputSplit trainData = inputSplit[0];
+        InputSplit testData = inputSplit[1];*/
+
         ImageRecordReader recordReader = new ImageRecordReader(height,width,channels,labelGenerator);
 
-        ImageTransform flipTransform1 = new FlipImageTransform(rng);
-        ImageTransform flipTransform2 = new FlipImageTransform(new Random(123));
-        ImageTransform warpTransform = new WarpImageTransform(rng, 42);
-        List<ImageTransform> transforms = Arrays.asList(new ImageTransform[]{flipTransform1, warpTransform, flipTransform2});
+        UIServer uiServer = UIServer.getInstance();
+        StatsStorage statsStorage = new InMemoryStatsStorage();
+        uiServer.attach(statsStorage);
 
-        MultiLayerNetwork trainedNetwork = trainNetwork_withoutTransformation(recordReader,train);
+        trainedNetwork.setListeners(new StatsListener(statsStorage));
+        trainedNetwork = trainNetwork_withoutTransformation(recordReader,trainData);
 
-        trainedNetwork = trainNetwork_withTransformation(recordReader,transforms,train,trainedNetwork);
+        if(trainWithTransform){
+            ImageTransform flipTransform1 = new FlipImageTransform(rng);
+            ImageTransform flipTransform2 = new FlipImageTransform(new Random(123));
+            ImageTransform warpTransform = new WarpImageTransform(rng, 42);
+
+            List<ImageTransform> transforms = Arrays.asList(new ImageTransform[]{flipTransform1, warpTransform, flipTransform2});
+
+            trainedNetwork = trainNetwork_withTransformation(recordReader,transforms,trainData,trainedNetwork);
+        }
+
+        evaluateNetwork(recordReader,new ImagePreProcessingScaler(0,1),testData,trainedNetwork);
 
         saveNetwork("trained_car-people_model.zip",trainedNetwork);
 
     }
 
-    private static MultiLayerNetwork  trainNetwork_withTransformation(ImageRecordReader recordReader, List<ImageTransform> transforms, FileSplit trainSet, MultiLayerNetwork neuralNetwork) throws IOException {
+    private static MultiLayerNetwork  trainNetwork_withTransformation(ImageRecordReader recordReader, List<ImageTransform> transforms, InputSplit trainSet, MultiLayerNetwork neuralNetwork) throws IOException {
         DataSetIterator dataIterator;
         DataNormalization scaler = new ImagePreProcessingScaler(0,1);
         MultipleEpochsIterator trainIter;
@@ -97,7 +123,7 @@ public class Program {
         return neuralNetwork;
     }
 
-    private static MultiLayerNetwork trainNetwork_withoutTransformation(ImageRecordReader recordReader, FileSplit trainSet) throws IOException {
+    private static MultiLayerNetwork trainNetwork_withoutTransformation(ImageRecordReader recordReader, InputSplit trainSet) throws IOException {
         recordReader.initialize(trainSet);
         recordReader.setListeners(new LogRecordListener());
 
@@ -107,15 +133,14 @@ public class Program {
         scaler.fit(dataIterator);
         dataIterator.setPreProcessor(scaler);
 
-        MultiLayerNetwork neuralNetwork = lenetModel();
-        neuralNetwork.init();
+        trainedNetwork.init();
 
         for(int i = 0; i< epochs; i++){
             System.out.println("Running " + i);
-            neuralNetwork.fit(dataIterator);
+            trainedNetwork.fit(dataIterator);
         }
 
-        return neuralNetwork;
+        return trainedNetwork;
     }
 
     private static void saveNetwork(String fileName, MultiLayerNetwork neuralNetwork) throws IOException {
@@ -123,7 +148,7 @@ public class Program {
         ModelSerializer.writeModel(neuralNetwork,saveTo,false);
     }
 
-    private static void evaluateNetwork(ImageRecordReader recordReader, DataNormalization scaler, FileSplit fileSet, MultiLayerNetwork neuralNetwork) throws IOException {
+    private static void evaluateNetwork(ImageRecordReader recordReader, DataNormalization scaler, InputSplit fileSet, MultiLayerNetwork neuralNetwork) throws IOException {
         recordReader.reset();
         recordReader.initialize(fileSet);
         DataSetIterator testIte = new RecordReaderDataSetIterator(recordReader,batchSize,1,numLabels);
