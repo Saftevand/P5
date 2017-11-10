@@ -45,47 +45,36 @@ import java.util.List;
 import java.util.Random;
 
 public class Program {
+    //Height Width and channels of pictures
     protected static int height = 100;
     protected static int width = 100;
     protected static int channels = 3;
+    //Number of possible labels = number of outputs
     protected static int numLabels = 5;
+    //Batchsize is the number of pictures loaded in memory at runtime
     protected static int batchSize = 100;
     protected static long seed = 42;
     protected static Random rng = new Random(seed);
     protected static int iterations = 1;
     protected static int epochs = 15;
-    protected static double splitTrainTest = 0.8;
-    protected static File imagePath  =  new File("C:/Users/palmi/Desktop/NeuralNetworkImages");
+    //Paths for test and training sets
+    protected static File trainPath  =  new File("C:/Users/palmi/Desktop/NeuralNetworkImages/TrainSet");
+    protected static File testPath = new File("C:/Users/palmi/Desktop/NeuralNetworkImages/TestSet");
     protected static boolean trainWithTransform = false;
     protected static MultiLayerNetwork trainedNetwork = lenetModel();
     private static Logger log = LoggerFactory.getLogger(Program.class);
 
     public static void main(String[] args) throws IOException {
-        // For individually setting the training and test paths
-
-        File trainPath = new File("C:/Users/palmi/Desktop/NeuralTesting/TrainSet");
-        File testPath = new File("C:/Users/palmi/Desktop/NeuralTesting/TestSet");
-
+        //Filesplit is created for each folder
         FileSplit trainData = new FileSplit(trainPath, NativeImageLoader.ALLOWED_FORMATS,rng);
         FileSplit testData = new FileSplit(testPath,NativeImageLoader.ALLOWED_FORMATS,rng);
-
+        //Labelgenerator for generating labels based on folder names eg. persons
         ParentPathLabelGenerator labelGenerator = new ParentPathLabelGenerator();
-
-        /*
-
-        FileSplit fileSplit = new FileSplit(imagePath, NativeImageLoader.ALLOWED_FORMATS,rng);
-        BalancedPathFilter pathFilter = new BalancedPathFilter(rng, labelGenerator, 250, numLabels, batchSize);
-        InputSplit[] inputSplit = fileSplit.sample(pathFilter, splitTrainTest, 1 - splitTrainTest);
-        InputSplit trainData = inputSplit[0];
-        InputSplit testData = inputSplit[1];*/
-
+        //ImageRecordReader which loads and feeds images to the data iterator
         ImageRecordReader recordReader = new ImageRecordReader(height,width,channels,labelGenerator);
+        //Setup for ui server that is responsible for providing graphs and other information during training
+        UiServerSetup();
 
-        UIServer uiServer = UIServer.getInstance();
-        StatsStorage statsStorage = new InMemoryStatsStorage();
-        uiServer.attach(statsStorage);
-
-        trainedNetwork.setListeners(new StatsListener(statsStorage));
         trainedNetwork = trainNetwork_withoutTransformation(recordReader,trainData);
 
         if(trainWithTransform){
@@ -100,8 +89,15 @@ public class Program {
 
         evaluateNetwork(recordReader,new ImagePreProcessingScaler(0,1),testData,trainedNetwork);
 
-        saveNetwork("trained_car-people_model.zip",trainedNetwork);
+        saveNetwork("trained_model.zip",trainedNetwork);
 
+    }
+
+    private static void UiServerSetup(){
+        UIServer uiServer = UIServer.getInstance();
+        StatsStorage statsStorage = new InMemoryStatsStorage();
+        uiServer.attach(statsStorage);
+        trainedNetwork.setListeners(new StatsListener(statsStorage));
     }
 
     private static MultiLayerNetwork  trainNetwork_withTransformation(ImageRecordReader recordReader, List<ImageTransform> transforms, InputSplit trainSet, MultiLayerNetwork neuralNetwork) throws IOException {
