@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d77c44f9-b0b5-4444-88d6-13fff1fb8624" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/SW504/Program.class" afterPath="$PROJECT_DIR$/target/classes/SW504/Program.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SW504/Program.java" afterPath="$PROJECT_DIR$/src/main/java/SW504/Program.java" />
     </list>
@@ -29,8 +30,8 @@
       <file leaf-file-name="Program.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="754">
-              <caret line="246" column="55" lean-forward="false" selection-start-line="246" selection-start-column="55" selection-end-line="246" selection-end-column="55" />
+            <state relative-caret-position="782">
+              <caret line="178" column="43" lean-forward="false" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
               <folding>
                 <element signature="method#main#0;class#Program#0" expanded="false" />
                 <element signature="method#UiServerSetup#0;class#Program#0" expanded="false" />
@@ -39,7 +40,6 @@
                 <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
                 <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
                 <element signature="method#maxPool#0;class#Program#0" expanded="false" />
-                <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
                 <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
                 <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
                 <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
@@ -327,7 +327,7 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -352,7 +352,6 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
-            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
@@ -385,7 +384,6 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
-            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
@@ -418,7 +416,6 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
-            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
@@ -484,8 +481,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="754">
-          <caret line="246" column="55" lean-forward="false" selection-start-line="246" selection-start-column="55" selection-end-line="246" selection-end-column="55" />
+        <state relative-caret-position="782">
+          <caret line="178" column="43" lean-forward="false" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
           <folding>
             <element signature="method#main#0;class#Program#0" expanded="false" />
             <element signature="method#UiServerSetup#0;class#Program#0" expanded="false" />
@@ -494,7 +491,6 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
-            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />

@@ -170,10 +170,13 @@ public class Program {
         return new SubsamplingLayer.Builder(kernel, new int[]{2,2}).name(name).build();
     }
 
-    private static void earlyStopTraining(){
+    private static void earlyStopTraining() throws IOException {
 
         ImageRecordReader validationReader = new ImageRecordReader(height,width,channels,labelGenerator);
         ImageRecordReader trainingReader = new ImageRecordReader(height,width,channels,labelGenerator);
+
+        validationReader.initialize(testData);
+        trainingReader.initialize(trainData);
 
         DataSetIterator validationSet = new RecordReaderDataSetIterator(validationReader,batchSize,1, numLabels);
         DataSetIterator trainingSet = new RecordReaderDataSetIterator(trainingReader,batchSize,1,numLabels);
@@ -224,7 +227,7 @@ public class Program {
                 .iterations(iterations)
                 .regularization(false).l2(0.005) // tried 0.0001, 0.0005
                 .activation(Activation.RELU)
-                .learningRate(0.0001) // tried 0.00001, 0.00005, 0.000001
+                .learningRate(0.0045) // tried 0.00001, 0.00005, 0.000001
                 .weightInit(WeightInit.XAVIER)
                 .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
                 .updater(new Nesterovs(0.9))
