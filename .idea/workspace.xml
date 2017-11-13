@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d77c44f9-b0b5-4444-88d6-13fff1fb8624" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/SW504/Program.class" afterPath="$PROJECT_DIR$/target/classes/SW504/Program.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SW504/Program.java" afterPath="$PROJECT_DIR$/src/main/java/SW504/Program.java" />
     </list>
@@ -30,8 +29,8 @@
       <file leaf-file-name="Program.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="178" column="43" lean-forward="false" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
+            <state relative-caret-position="17">
+              <caret line="329" column="51" lean-forward="true" selection-start-line="329" selection-start-column="51" selection-end-line="329" selection-end-column="51" />
               <folding>
                 <element signature="method#main#0;class#Program#0" expanded="false" />
                 <element signature="method#UiServerSetup#0;class#Program#0" expanded="false" />
@@ -40,10 +39,11 @@
                 <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
                 <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
                 <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+                <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+                <element signature="e#9641#9650#0" expanded="true" />
                 <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
                 <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
                 <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
-                <element signature="method#alexnetModel#0;class#Program#0" expanded="false" />
                 <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
                 <element signature="method#convInit#0;class#Program#0" expanded="false" />
                 <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
@@ -143,10 +143,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,13 +288,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -310,6 +309,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979852" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -342,6 +342,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6086">
+          <caret line="358" column="54" lean-forward="false" selection-start-line="358" selection-start-column="54" selection-end-line="358" selection-end-column="54" />
+          <folding>
+            <element signature="method#main#0;class#Program#0" expanded="false" />
+            <element signature="method#UiServerSetup#0;class#Program#0" expanded="false" />
+            <element signature="method#trainNetwork_withTransformation#0;class#Program#0" expanded="false" />
+            <element signature="method#trainNetwork_withoutTransformation#0;class#Program#0" expanded="false" />
+            <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
+            <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
+            <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+            <element signature="e#9641#9650#0" expanded="true" />
+            <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
+            <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
+            <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
+            <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
+            <element signature="method#convInit#0;class#Program#0" expanded="false" />
+            <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
+            <element signature="method#conv5x5#0;class#Program#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="46" column="28" lean-forward="false" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1139">
           <caret line="67" column="46" lean-forward="true" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
           <folding>
@@ -352,10 +385,11 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+            <element signature="e#9641#9650#0" expanded="true" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
-            <element signature="method#alexnetModel#0;class#Program#0" expanded="false" />
             <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
             <element signature="method#convInit#0;class#Program#0" expanded="false" />
             <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
@@ -384,10 +418,11 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+            <element signature="e#9641#9650#0" expanded="true" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
-            <element signature="method#alexnetModel#0;class#Program#0" expanded="false" />
             <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
             <element signature="method#convInit#0;class#Program#0" expanded="false" />
             <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
@@ -416,10 +451,11 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+            <element signature="e#9641#9650#0" expanded="true" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
-            <element signature="method#alexnetModel#0;class#Program#0" expanded="false" />
             <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
             <element signature="method#convInit#0;class#Program#0" expanded="false" />
             <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
@@ -481,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SW504/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="178" column="43" lean-forward="false" selection-start-line="178" selection-start-column="43" selection-end-line="178" selection-end-column="43" />
+        <state relative-caret-position="17">
+          <caret line="329" column="51" lean-forward="true" selection-start-line="329" selection-start-column="51" selection-end-line="329" selection-end-column="51" />
           <folding>
             <element signature="method#main#0;class#Program#0" expanded="false" />
             <element signature="method#UiServerSetup#0;class#Program#0" expanded="false" />
@@ -491,10 +527,11 @@
             <element signature="method#saveNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#evaluateNetwork#0;class#Program#0" expanded="false" />
             <element signature="method#maxPool#0;class#Program#0" expanded="false" />
+            <element signature="method#earlyStopTraining#0;class#Program#0" expanded="false" />
+            <element signature="e#9641#9650#0" expanded="true" />
             <element signature="method#lenetConf#0;class#Program#0" expanded="false" />
             <element signature="method#alexnetConf#0;class#Program#0" expanded="false" />
             <element signature="method#lenetModel#0;class#Program#0" expanded="false" />
-            <element signature="method#alexnetModel#0;class#Program#0" expanded="false" />
             <element signature="method#fullyConnected#0;class#Program#0" expanded="false" />
             <element signature="method#convInit#0;class#Program#0" expanded="false" />
             <element signature="method#conv3x3#0;class#Program#0" expanded="false" />
